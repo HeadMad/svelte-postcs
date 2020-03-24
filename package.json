@@ -1,0 +1,29 @@
+{
+  "name": "svelte-postcss",
+  "version": "1.0.0",
+  "description": "postcss for svelte",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeadMad/svelte-postcss.git"
+  },
+  "keywords": [
+    "svelte",
+    "postcss"
+  ],
+  "author": "HeadMad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HeadMad/svelte-postcss/issues"
+  },
+  "homepage": "https://github.com/HeadMad/svelte-postcss#readme",
+  "dependencies": {
+    "postcss": "^7.0.26",
+    "postcss-load-config": "^2.1.0",
+    "postcss-svelte-global-styles": "github:HeadMad/postcss-svelte-global-styles"
+  },
+  "devDependencies": {}
+}
