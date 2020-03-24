@@ -9,7 +9,7 @@ const fs = require('fs')
 
 
 
-const plugin = (plugins = []) => {
+const sveltePostcssPlugin = (plugins = []) => {
   const style = async ({content, attributes, filename}) => {
     if (attributes.global) plugins.push(globalStyles)
     if (!plugins.length) return
@@ -26,4 +26,4 @@ const plugin = (plugins = []) => {
   return {style}
 }
 
-module.exports = plugin
+module.exports = sveltePostcssPlugin
