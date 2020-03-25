@@ -1,38 +1,30 @@
 const postcss = require('postcss')
-const path = require('path')
-let PLUGINS = [], OPTIONS = {from: undefined}
+const {plugins, options} = require('./lib/config')
 
-let packagePath = path.resolve(__dirname.substring(0, __dirname.indexOf("node_modules")), 'package.json')
-const package = require(packagePath)
- 
-
-if (package.postcss && package.postcss.plugins) {
-  const plugins = package.postcss.plugins
-  for (key in plugins) {
-    PLUGINS.push(require(key)(plugins[key]))
-  }
+const runPostcss = (input) => {
+  return postcss(plugins)
+    .process(input, options)
+    .then(result => {
+      result.warnings().forEach(warn => console.warn(warn.toString()))
+      return result.css
+    })
 }
 
 const style = async ({content}) => {
-  console.log({PLUGINS, OPTIONS})
-  if (!PLUGINS || !PLUGINS.length) return
+  if (!plugins.length) return
   let code
-
-  await postcss(PLUGINS)
-    .process(content, OPTIONS)
-    .then(result => {
-      result.warnings().forEach(warn => console.warn(warn.toString()))
-      code = result.css
-    })
+  await runPostcss(content)
+    .then(css => code = css)
   return { code }
 }
 
-const sveltePostcssPlugin = (plugins = []) => {
-  if (Array.isArray(plugins))
-    PLUGINS = plugins
-  return {style}
+const sveltePostcssPlugin = (plugs = []) => {
+  if (Array.isArray(plugs))
+    plugins = plugs
+  return sveltePostcssPlugin
 }
 
 sveltePostcssPlugin.style = style
+sveltePostcssPlugin.run = runPostcss
 
 module.exports = sveltePostcssPlugin
