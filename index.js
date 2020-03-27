@@ -1,7 +1,7 @@
 const postcss = require('postcss')
 const {plugins, options} = require('./lib/config')
 
-const runPostcss = (input) => {
+const run = (input) => {
   return postcss(plugins)
     .process(input, options)
     .then(result => {
@@ -13,18 +13,20 @@ const runPostcss = (input) => {
 const style = async ({content}) => {
   if (!plugins.length) return
   let code
-  await runPostcss(content)
+  await run(content)
     .then(css => code = css)
   return { code }
 }
 
-const sveltePostcssPlugin = (plugs = []) => {
+const sveltePostcssPlugin = (plugs = false, opts = false) => {
+  if (typeof opts === 'object')
+    options = opts
   if (Array.isArray(plugs))
     plugins = plugs
-  return sveltePostcssPlugin
+  return {style, run}
 }
 
 sveltePostcssPlugin.style = style
-sveltePostcssPlugin.run = runPostcss
+sveltePostcssPlugin.run = run
 
 module.exports = sveltePostcssPlugin
