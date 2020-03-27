@@ -35,7 +35,7 @@ In exemple used plugin [postcss-svelte-global-styles](https://github.com/HeadMad
 
 ## Also
 You can use other gonfig sources. Like exemple - section `postcss` in `package.json`
-```json
+```
 {
   ...
   "postcss": {
