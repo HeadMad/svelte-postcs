@@ -1,5 +1,5 @@
 const postcss = require('postcss')
-const {plugins, options} = require('./lib/config')
+let {plugins, options} = require('./lib/config')
 
 const run = (input) => {
   return postcss(plugins)

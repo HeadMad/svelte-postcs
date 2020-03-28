@@ -35,7 +35,7 @@ export default {
 In exemple, all PostCSS plugins will be applied to each svelte-file separately.
 <br>If you whant appli PostCSS to all styles of project, you mast add next code
 
-```diff
+```javascript
 // rollup.config.js
 
 import svelte from 'rollup-plugin-svelte';
@@ -52,12 +52,12 @@ export default {
         postcss([ globalStyles ])
       ],
       ...
-+     css: async (css) => {
-+       await postcss([	mqPacker() ])
-+         .run(css.code)
-+         .then((output) => { css.code = output })
-+       css.write('public/build/bundle.css');
-+     },
+      css: async (css) => {
+        await postcss([	mqPacker() ])
+          .run(css.code)
+          .then((output) => { css.code = output })
+        css.write('public/build/bundle.css');
+      },
       ...
     })
   ]
