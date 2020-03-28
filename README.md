@@ -4,7 +4,11 @@
 
 ## Install
 ```
-npm install --save-dev HeadMad/svelte-postcss#1.0
+npm install --save-dev svelte-postcss
+```
+or
+```
+npm i --D headmad/svelte-postcss
 ```
 
 ## Usage
