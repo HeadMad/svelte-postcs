@@ -31,7 +31,37 @@ export default {
   ]
 }
 ```
-In exemple used plugin [postcss-svelte-global-styles](https://github.com/HeadMad/postcss-svelte-global-styles#readme)
+In exemple, all PostCSS plugins will be applied to each svelte-file separately.
+<br>If you whant appli PostCSS to all styles of project, you mast add next code
+```javascript
+// rollup.config.js
+
+import svelte from 'rollup-plugin-svelte';
+import postcss from 'svelte-postcss';
+import globalsStyles from 'postcss-svelte-global-styles'
+import mqPacker from 'css-mqpacker'
+...
+
+export default {
+  ...
+  plugins: [
+    svelte({
+      preprocess: [
+        postcss([ globalStyles ])
+      ],
+      ...
+      css: async (css) => {
+        await postcss([	mqPacker() ])
+          .run(css.code)
+          .then((output) => { css.code = output })
+        css.write('public/build/bundle.css');
+      },
+      ...
+    })
+  ]
+}
+```
+In exemple used plugins [postcss-svelte-global-styles](https://github.com/HeadMad/postcss-svelte-global-styles#readme) and [css-mqpacker](https://github.com/hail2u/node-css-mqpacker#readme)
 
 ## Also
 You can use other gonfig sources. Like exemple - section `postcss` in `package.json`
