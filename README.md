@@ -8,7 +8,7 @@ npm install --save-dev svelte-postcss
 ```
 or
 ```
-npm i --D headmad/svelte-postcss
+npm i -D headmad/svelte-postcss
 ```
 
 ## Usage
