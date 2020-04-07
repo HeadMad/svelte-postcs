@@ -6,16 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HeadMad/svelte-postcss.git"
-  },
   "keywords": [
     "svelte",
     "postcss"
   ],
-  "author": "HeadMad",
+  "author": "HeadMad <kov.ps@yandex.ru>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeadMad/svelte-postcss.git"
+  },
   "bugs": {
     "url": "https://github.com/HeadMad/svelte-postcss/issues"
   },
