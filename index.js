@@ -21,7 +21,7 @@ const style = async ({content}) => {
 const sveltePostcssPlugin = (plugs = false, opts = false) => {
   if (typeof opts === 'object')
     options = opts
-  if (Array.isArray(plugs))
+  if (Array.isArray(plugs) && plugs.length)
     plugins = plugs
   return {style, run}
 }
