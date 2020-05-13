@@ -1,5 +1,5 @@
 const postcss = require('postcss')
-const {plugins, options} = require('./lib/config')
+let {plugins, options} = require('./lib/config')
 
 const run = (input) => {
   return postcss(plugins)
@@ -21,7 +21,7 @@ const style = async ({content}) => {
 const sveltePostcssPlugin = (plugs = false, opts = false) => {
   if (typeof opts === 'object')
     options = opts
-  if (Array.isArray(plugs))
+  if (Array.isArray(plugs) && plugs.length)
     plugins = plugs
   return {style, run}
 }
